@@ -13,6 +13,12 @@ const res = getDaysDiffBetweenDates(
 console.log(res);
 ```
 
+```js
+const dayDif = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)
+    
+dayDif(new Date("2021-11-3"), new Date("2022-2-1"))  // 90
+```
+
 ## 時間戳轉時間
 
 ```js
@@ -33,4 +39,12 @@ const dateTime = Date.now();
 const timestamp = Math.floor(dateTime);
 const res = timestampToTime(timestamp);
 console.log( timestamp, res ) // 1591867233363 "2020-06-11 "
+```
+
+## 查找日期位於一年中的第幾天
+
+```js
+const dayOfYear = (date) => Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+
+dayOfYear(new Date());  // 306
 ```
