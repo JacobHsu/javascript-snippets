@@ -42,3 +42,42 @@ console.log(curried(1, 2, 3)); // 6
 console.log(curried(1)(2, 3)); // 6
 console.log(curried(1, 2)(3)); // 6
 ```
+
+## 精度
+
+為了避免產生精度差異，我們要把需要計算的數字乘以 10 的 n 次冪，換算成計算機能夠精確識別的整數，然後再除以 10 的 n 次冪，大部分編程語言都是這樣處理精度差異的，我們就借用過來處理一下 JS 中的浮點數精度誤差。
+
+傳入 n 次冪的 n 值：
+
+```js
+formatNum = function (f, digit) {
+  var m = Math.pow(10, digit);
+  return parseInt(f * m, 10) / m;
+};
+var num1 = 0.1;
+var num2 = 0.2;
+console.log(num1 + num2);
+console.log(formatNum(num1 + num2, 1));
+```
+
+動計算 n 次冪的 n 值：
+
+```js
+/**
+ * 精確加法
+ */
+function add(num1, num2) {
+  const num1Digits = (num1.toString().split('.')[1] || '').length;
+  const num2Digits = (num2.toString().split('.')[1] || '').length;
+  const baseNum = Math.pow(10, Math.max(num1Digits, num2Digits));
+  return (num1 * baseNum + num2 * baseNum) / baseNum;
+}
+add(0.1, 0.2); // 0.3
+```
+
+使用類庫：
+  通常這種對精度要求高的計算都應該交給後端去計算和存儲，因為後端有成熟的庫來解決這種計算問題。前端也有幾個不錯的類庫：
+
+[Math.js](https://mathjs.org/)
+[decimal.js](http://mikemcl.github.io/decimal.js/)
+[big.js](http://mikemcl.github.io/big.js/)

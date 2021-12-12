@@ -45,3 +45,21 @@ window.onerror = function (message, source, lineno, colno, error) {
 
 總結
   前端組件/項目中，需要有適當的錯誤處理過程，否則出現錯誤，層層上傳，沒有進行捕獲，就會導致頁面掛掉。
+
+## Crypto.getRandomValues()
+
+Math.random是偽隨機的，具體可參考[隨機數的故事](https://zhuanlan.zhihu.com/p/205359984)。
+
+從 V8 裡 Math.random 的實現邏輯來看，每次會一次性產生 128 個隨機數，並放到 cache 裡面，供後續使用，當 128 個使用完了再重新生成一批隨機數。所以 Math.random 的隨機數具有可預測性，這種由算法生成的隨機數也叫偽隨機數。只要種子確定，隨機算法也確定，便能知道下一個隨機數是什麼。
+
+[Crypto.getRandomValues()](https://developer.mozilla.org/zh-CN/docs/Web/API/Crypto/getRandomValues) 方法讓你可以獲取符合密碼學要求的安全的隨機值。傳入參數的數組被隨機值填充（在加密意義上的隨機）。window.crypto.getRandomValue的實現在 Safari，Chrome 和 Opera 瀏覽器上是使用帶有 1024 位種子的ARC4流密碼。
+
+```js
+var array = new Uint32Array(10);
+window.crypto.getRandomValues(array);
+
+console.log('Your lucky numbers:');
+for (var i = 0; i < array.length; i++) {
+  console.log(array[i]);
+}
+```
