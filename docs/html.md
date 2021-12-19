@@ -31,3 +31,79 @@ document.addEventListener('paste', () => {
   event.preventDefault();
 });
 ```
+
+實現頁面檢測更新並提示
+
+
+  開發過程中，經常遇到頁面更新、版本發布時，需要告訴使用人員刷新頁面的情況，甚至有些運營、測試人員覺得切換一下菜單再切回去就是更新了 web 頁面資源，有的分不清普通刷新和強刷的區別，所以實現了一個頁面更新檢測功能，頁面更新了自動提示使用人員刷新頁面。
+
+  基本思路為：使用 webpack 配置打包編譯時在 js 文件名裡添加 hash，然後使用 js 向${window.location.origin}/index.html發送請求，解析出 html 文件裡引入的 js 文件名稱 hash，對比當前 js 的 hash 與新版本的 hash 是否一致，不一致則提示用戶更新版本。
+
+```js
+// uploadUtils.jsx
+import React from 'react';
+import axios from 'axios';
+import { notification, Button } from 'antd';
+
+// 彈窗是否已展示（可以改用閉包、單例模式等實現，看起來會更有逼格一點）
+let uploadNotificationShow = false;
+
+// 關閉notification
+const close = () => {
+  uploadNotificationShow = false;
+};
+
+// 刷新頁面
+const onRefresh = (new_hash) => {
+  close();
+  // 更新localStorage版本號信息
+  window.localStorage.setItem('XXXSystemFrontVesion', new_hash);
+  // 刷新頁面
+  window.location.reload(true);
+};
+
+// 展示提示彈窗
+const openNotification = (new_hash) => {
+  uploadNotificationShow = true;
+  const btn = (
+    <Button type='primary' size='small' onClick={() => onRefresh(new_hash)}>
+      確認更新
+    </Button>
+  );
+  // 這裡不自動執行更新的原因是：
+  // 考慮到也許此時用戶正在使用系統甚至填寫一個很長的表單，那你直接刷新了頁面，或許會被掐死的，哈哈
+  notification.open({
+    message: '版本更新提示',
+    description: '檢測到系統當前版本已更新，請刷新後使用。',
+    btn,
+    // duration為0時，notification不自動關閉
+    duration: 0,
+    onClose: close,
+  });
+};
+
+// 獲取hash
+export const getHash = () => {
+  // 如果提示彈窗已展示，就沒必要執行接下來的檢查邏輯了
+  if (!uploadNotificationShow) {
+    // 在 js 中請求首頁地址，這樣不會刷新界面，也不會跨域
+    axios
+      .get(`${window.location.origin}/index.html?time=${new Date().getTime()}`)
+      .then((res) => {
+        // 匹配index.html文件中引入的js文件是否變化（具體正則，視打包時的設置及文件路徑而定）
+        let new_hash = res.data && res.data.match(/\/static\/js\/main.(.*).js/);
+        // console.log(res, new_hash);
+        new_hash = new_hash ? new_hash[1] : null;
+        // 查看本地版本
+        let old_hash = localStorage.getItem('XXXSystemFrontVesion');
+        if (!old_hash) {
+          // 如果本地沒有版本信息（第一次使用系統），則直接執行一次額外的刷新邏輯
+          onRefresh(new_hash);
+        } else if (new_hash && new_hash != old_hash) {
+          // 本地已有版本信息，但是和新版不同：版本更新，彈出提示
+          openNotification(new_hash);
+        }
+      });
+  }
+};
+```
