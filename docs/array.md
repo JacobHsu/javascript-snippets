@@ -15,3 +15,18 @@ const merge = (a, b) => [...a, ...b];
 const removeDuplicates = (arr) => [...new Set(arr)];
 console.log(removeDuplicates([1, 2, 2, 3, 3, 4, 4, 5, 5, 6])); //  [1, 2, 3, 4, 5, 6]
 ```
+
+## map
+
+[javascript-puzzlers](https://github.com/xiaoyu2er/blog/issues/1)
+
+Number/parseInt
+
+```js
+["1", "2", "3"].map(parseInt)
+
+parseInt('1', 0);
+parseInt('2', 1);
+parseInt('3', 2);
+// [1, NaN, NaN]
+```
