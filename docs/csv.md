@@ -44,10 +44,10 @@ The first row of the string is used as the title row.
 
 ```js
 const CSVToJSON = (data, delimiter = ',') => {
-  const titles = data.slice(0, data.indexOf('\n')).split(delimiter);
+  const titles = data.slice(0, data.indexOf('\n')).split(delimiter); // 'col1,col2'
   return data
     .slice(data.indexOf('\n') + 1)
-    .split('\n')
+    .split('\n') // ['col1,col2', 'a,b', 'c,d']
     .map(v => {
       const values = v.split(delimiter);
       return titles.reduce(

@@ -7,4 +7,5 @@
 * [JavaScript](/js)
 * [頁面](/html)
 * [CSV](/csv)
+* [JSON](/json)
 * [Window](/window)
