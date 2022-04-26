@@ -30,3 +30,31 @@ parseInt('2', 1);
 parseInt('3', 2);
 // [1, NaN, NaN]
 ```
+
+## every
+
+`const all = (arr, fn = Boolean) => arr.every(fn);`
+
+```js
+all([4, 2, 3], x => x > 1); // true
+all([1, 2, 3]); // true
+```
+
+`const allEqual = arr => arr.every(val => val === arr[0]);`
+
+```js
+allEqual([1, 2, 3, 4, 5, 6]); // false
+allEqual([1, 1, 1, 1]); // true
+```
+
+```js
+const allEqualBy = (arr, fn) => {
+  const eql = fn(arr[0]);
+  return arr.every(val => fn(val) === eql);
+};
+```
+
+```js
+allEqualBy([1.1, 1.2, 1.3], Math.round); // true
+allEqualBy([1.1, 1.3, 1.6], Math.round); // false
+```
