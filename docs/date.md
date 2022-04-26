@@ -1,5 +1,71 @@
 # 時間
 
+## Add days to date
+
+Calculates the date of `n` days from the given date, returning its string representation.
+
+- Use the `Date` constructor to create a `Date` object from the first argument.
+- Use `Date.prototype.getDate()` and `Date.prototype.setDate()` to add `n` days to the given date.
+- Use `Date.prototype.toISOString()` to return a string in `yyyy-mm-dd` format.
+
+```js
+const addDaysToDate = (date, n) => {
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split('T')[0];
+};
+```
+
+```js
+addDaysToDate('2020-10-15', 10); // '2020-10-25'
+addDaysToDate('2020-10-15', -10); // '2020-10-05'
+```
+
+## Add minutes to date
+
+Calculates the date of `n` minutes from the given date, returning its string representation.
+
+- Use the `Date` constructor to create a `Date` object from the first argument.
+- Use `Date.prototype.getTime()` and `Date.prototype.setTime()` to add `n` minutes to the given date.
+- Use `Date.prototype.toISOString()`, `String.prototype.split()` and `String.prototype.replace()` to return a string in `yyyy-mm-dd HH:MM:SS` format.
+
+```js
+const addMinutesToDate = (date, n) => {
+  const d = new Date(date);
+  d.setTime(d.getTime() + n * 60000);
+  return d.toISOString().split('.')[0].replace('T',' ');
+};
+```
+
+```js
+addMinutesToDate('2020-10-19 12:00:00', 10); // '2020-10-19 12:10:00'
+addMinutesToDate('2020-10-19', -10); // '2020-10-18 23:50:00'
+```
+
+## Add weekdays to date
+
+Calculates the date after adding the given number of business days.
+
+- Use `Array.from()` to construct an array with `length` equal to the `count` of business days to be added.
+- Use `Array.prototype.reduce()` to iterate over the array, starting from `startDate` and incrementing, using `Date.prototype.getDate()` and `Date.prototype.setDate()`.
+- If the current `date` is on a weekend, update it again by adding either one day or two days to make it a weekday.
+- **NOTE:** Does not take official holidays into account.
+
+```js
+const addWeekDays = (startDate, count) =>
+  Array.from({ length: count }).reduce(date => {
+    date = new Date(date.setDate(date.getDate() + 1));
+    if (date.getDay() % 6 === 0)
+      date = new Date(date.setDate(date.getDate() + (date.getDay() / 6 + 1)));
+    return date;
+  }, startDate);
+```
+
+```js
+addWeekDays(new Date('Oct 09, 2020'), 5); // 'Oct 16, 2020'
+addWeekDays(new Date('Oct 12, 2020'), 5); // 'Oct 19, 2020'
+```
+
 ## 如何獲得兩個日期之間的差異（以天為單位）？
 
 ```js
