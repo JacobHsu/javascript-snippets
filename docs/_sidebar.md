@@ -8,5 +8,7 @@
 * [頁面](/html)
 * [CSV](/csv)
 * [JSON](/json)
+* [Math](/math)
 * [Crypto](/crypto)
+* [Blob](/blob)
 * [Window](/window)
