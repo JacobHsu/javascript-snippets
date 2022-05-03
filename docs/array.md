@@ -61,8 +61,8 @@ Calculates the average of an array, after mapping each element to a value using 
 ```js
 const averageBy = (arr, fn) =>
   arr
-    .map(typeof fn === 'function' ? fn : val => val[fn])
-    .reduce((acc, val) => acc + val, 0) / arr.length;
+    .map(typeof fn === 'function' ? fn : val => val[fn]) // [4, 2, 8, 6] // { n: 4 } obj['n'] is 4
+    .reduce((acc, cur) => acc + cur, 0) / arr.length;
 ```
 
 ```js

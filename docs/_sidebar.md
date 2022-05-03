@@ -4,6 +4,7 @@
 * [時間](/date)
 * [數組](/array)
 * [物件](/object)
+* [函式](/functions)
 * [JavaScript](/js)
 * [頁面](/html)
 * [CSV](/csv)
