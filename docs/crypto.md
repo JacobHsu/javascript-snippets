@@ -20,7 +20,8 @@ UUIDGeneratorBrowser(); // '7982fcfe-5721-4632-bede-6000885be57d'
 
 ## Caesar cipher
 
-[凱撒密碼](https://zh.wikipedia.org/zh-tw/凱撒密碼)
+[凱撒密碼](https://zh.wikipedia.org/zh-tw/凱撒密碼) 
+[ASCII](https://zh.wikipedia.org/wiki/ASCII)  
 
 Encrypts or decrypts a given string using the Caesar cipher.
 
@@ -37,9 +38,9 @@ const caesarCipher = (str, shift, decrypt = false) => {
   return [...str]
     .map((l, i) => {
       const c = str.charCodeAt(i);
-      if (c >= 65 && c <= 90)
+      if (c >= 65 && c <= 90) // ASCII Decimal A 65 Z 90
         return String.fromCharCode(((c - 65 + n) % 26) + 65);
-      if (c >= 97 && c <= 122)
+      if (c >= 97 && c <= 122) // ASCII Decimal a 97 z 122
         return String.fromCharCode(((c - 97 + n) % 26) + 97);
       return l;
     })
