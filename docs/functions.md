@@ -15,3 +15,28 @@ const isPositiveEven = both(isEven, isPositive);
 isPositiveEven(4); // true
 isPositiveEven(-2); // false
 ```
+
+## Call functions with context
+
+Given a key and a set of arguments, call them when given a context.
+
+- Use a closure to call `key` with `args` for the given `context`.
+
+```js
+const call = (key, ...args) => context => context[key](...args);
+```
+
+```js
+Promise.resolve([1, 2, 3])
+  .then(call('map', x => 2 * x))
+  .then(console.log); // [ 2, 4, 6 ]
+
+Promise.resolve([1, 2, 3])
+  .then(call('map', (pre, cur) => pre + cur))
+  .then(console.log); // [1, 3, 5]
+
+Promise.resolve([1, 2, 3])
+  .then(call('reduce', (pre, cur) => pre + cur))
+  .then(console.log); // 6
+```
+
