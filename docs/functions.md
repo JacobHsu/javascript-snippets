@@ -40,3 +40,22 @@ Promise.resolve([1, 2, 3])
   .then(console.log); // 6
 ```
 
+
+## Capitalize every word
+
+
+Capitalizes the first letter of every word in a string.
+
+- Use `String.prototype.replace()` to match the first character of each word and `String.prototype.toUpperCase()` to capitalize it.
+
+[`\b`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions)
+ 
+```js
+const capitalizeEveryWord = str =>
+  str.replace(/\b[a-z]/g, char => char.toUpperCase());
+```
+
+```js
+capitalizeEveryWord('hello world!'); // 'Hello World!'
+```
+
