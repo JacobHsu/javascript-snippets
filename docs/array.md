@@ -70,6 +70,24 @@ averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n); // 5
 averageBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'); // 5
 ```
 
+### Cartesian product
+
+Calculates the cartesian product of two arrays.
+
+- Use `Array.prototype.reduce()`, `Array.prototype.map()` and the spread operator (`...`) to generate all possible element pairs from the two arrays.
+
+```js
+const cartesianProduct = (a, b) =>
+  a.reduce((p, x) => [...p, ...b.map(y => [x, y])], []);
+  // [1,2].map(y=>['a',y])  [["a", 1], ["a", 2]]
+```
+
+```js
+cartesianProduct(['x', 'y'], [1, 2]);
+// [['x', 1], ['x', 2], ['y', 1], ['y', 2]]
+```
+
+
 ## every
 
 `const all = (arr, fn = Boolean) => arr.every(fn);`
