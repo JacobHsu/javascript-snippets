@@ -137,6 +137,25 @@ const chunk = (arr, size) =>
 chunk([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
 ```
 
+## find
+
+### Argument coalescing factory
+
+Customizes a coalesce function that returns the first argument which is `true` based on the given validator.
+
+- Use `Array.prototype.find()` to return the first argument that returns `true` from the provided argument validation function, `valid`.
+
+```js
+const coalesceFactory = valid => (...args) => args.find(valid);
+```
+
+```js
+const customCoalesce = coalesceFactory(
+  v => ![null, undefined, '', NaN].includes(v)
+);
+customCoalesce(undefined, null, NaN, '', 'Waldo'); // 'Waldo'
+```
+
 ## isArray
 
 
