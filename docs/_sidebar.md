@@ -10,6 +10,7 @@
 * [頁面](/html)
 * [CSV](/csv)
 * [JSON](/json)
+* [Promise](/promise)
 * [Math](/math)
 * [Crypto](/crypto)
 * [Blob](/blob)
