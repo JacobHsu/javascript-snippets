@@ -33,6 +33,36 @@ parseInt('3', 2);
 
 ## reduce
 
+### Convert Array to Object
+
+iterated objects as key 
+
+```js
+// from:
+const arr = [
+    {
+        sid: 123,
+        name: 'aaa'
+    },
+    {
+        sid: 456,
+        name: 'bbb'
+    },
+    {
+        sid: 789,
+        name: 'ccc'
+    }
+];
+// to:
+{
+  '123': { sid: 123, name: 'aaa' },
+  '456': { sid: 456, name: 'bbb' },
+  '789': { sid: 789, name: 'ccc' }
+}
+```
+
+`const result = arr.reduce((obj, cur) => ({...obj, [cur.sid]: cur}), {})`
+
 ### Average of numbers
 
 Calculates the average of two or more numbers.
