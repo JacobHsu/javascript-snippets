@@ -13,3 +13,4 @@
 * [Crypto](/crypto)
 * [Blob](/blob)
 * [Window](/window)
+* [console](/console)
