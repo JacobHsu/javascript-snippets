@@ -72,7 +72,7 @@ Combines two arrays of objects, using the specified key to match objects.
 const combine = (a, b, prop) =>
   Object.values(
     [...a, ...b].reduce((acc, v) => {
-      if (v[prop])
+      if (v[prop]) // id
         acc[v[prop]] = acc[v[prop]]
           ? { ...acc[v[prop]], ...v }
           : { ...v };
