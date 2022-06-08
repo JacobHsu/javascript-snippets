@@ -4,6 +4,7 @@
 * [時間](/date)
 * [數組](/array)
 * [物件](/object)
+* [字串](/str)
 * [函式](/functions)
 * [JavaScript](/js)
 * [match](/match)
