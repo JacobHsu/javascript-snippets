@@ -40,7 +40,6 @@ Promise.resolve([1, 2, 3])
   .then(console.log); // 6
 ```
 
-
 ## Capitalize every word
 
 
@@ -59,3 +58,41 @@ const capitalizeEveryWord = str =>
 capitalizeEveryWord('hello world!'); // 'Hello World!'
 ```
 
+## Compose functions
+
+Performs right-to-left function composition.
+
+- Use `Array.prototype.reduce()` to perform right-to-left function composition.
+- The last (rightmost) function can accept one or more arguments; the remaining functions must be unary.
+
+```js
+const compose = (...fns) =>
+  fns.reduce((f, g) => (...args) => f(g(...args)));
+```
+
+```js
+const add5 = x => x + 5;
+const multiply = (x, y) => x * y;
+const multiplyAndAdd5 = compose(
+  add5,
+  multiply
+);
+multiplyAndAdd5(5, 2); // 15
+```
+
+left-to-right function composition
+
+```js
+const compose = (...fns) =>
+  fns.reduce((f, g) => (...args) => g(f(...args)));
+```
+
+```js
+const add5 = x => x + 5;
+const multiply = (x, y) => x * y;
+const multiplyAndAdd5 = compose(
+  multiply,
+  add5
+);
+multiplyAndAdd5(5, 2); // 15
+```
