@@ -80,19 +80,21 @@ const multiplyAndAdd5 = compose(
 multiplyAndAdd5(5, 2); // 15
 ```
 
-left-to-right function composition
+## Reverse compose functions
+
+Performs left-to-right function composition.
+
+- Use `Array.prototype.reduce()` to perform left-to-right function composition.
+- The first (leftmost) function can accept one or more arguments; the remaining functions must be unary.
 
 ```js
-const compose = (...fns) =>
+const composeRight = (...fns) =>
   fns.reduce((f, g) => (...args) => g(f(...args)));
 ```
 
 ```js
-const add5 = x => x + 5;
-const multiply = (x, y) => x * y;
-const multiplyAndAdd5 = compose(
-  multiply,
-  add5
-);
-multiplyAndAdd5(5, 2); // 15
-```
+const add = (x, y) => x + y;
+const square = x => x * x;
+const addAndSquare = composeRight(add, square);
+addAndSquare(1, 2); // 9
+``
