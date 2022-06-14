@@ -114,3 +114,29 @@ const dayOfYear = (date) => Math.floor((date - new Date(date.getFullYear(), 0, 0
 
 dayOfYear(new Date());  // 306
 ```
+
+## Convert GMT to local time
+
+```js
+// 👇️ can be any valid GMT date/ date+time string
+const dateStr = 'Sat, 15 Jan 2021 09:24:00 GMT';
+
+const date = new Date(dateStr);
+
+// 👇️ "Fri Jan 15 2021 11:24:00 GMT+0200 (Eastern European Standard Time)"
+console.log(date);
+
+// ✅ get date and time in the visitor's default locale
+console.log(date.toLocaleString()); // 👉️ "1/15/2021, 11:24:00 AM"
+
+// ✅ Get LOCAL (visitor's time zone) date and time components
+const hours = date.getHours();
+console.log(hours); // 👉️ 11
+
+const minutes = date.getMinutes();
+console.log(minutes); // 👉️ 24
+
+const seconds = date.getSeconds();
+console.log(seconds); // 👉️ 0
+
+```
