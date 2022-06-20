@@ -3,6 +3,7 @@
 * [指南](/guide)
 * [時間](/date)
 * [數組](/array)
+* [數組方法](/array/reduce)
 * [物件](/object)
 * [字串](/str)
 * [函式](/functions)
