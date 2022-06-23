@@ -44,3 +44,22 @@ countBy(['one', 'two', 'three'], 'length'); // {3: 2, 5: 1}
 countBy([{ count: 5 }, { count: 10 }, { count: 5 }], x => x.count)
 // {5: 2, 10: 1}
 ```
+
+## Count occurrences
+
+Counts the occurrences of a value in an array.
+
+- Use `Array.prototype.reduce()` to increment a counter each time the specific value is encountered inside the array.
+
+```js
+const countOccurrences = (arr, val) =>
+  arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+```
+
+```js
+countOccurrences([1, 1, 2, 1, 2, 3], 1); // 3
+
+[1,1,2,1].reduce((a, v) => { 
+  console.log(a); // 0 0 0 1
+  return v === 2 ? a + 1 : a }, 0)
+```
