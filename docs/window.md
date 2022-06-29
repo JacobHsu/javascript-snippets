@@ -1,5 +1,19 @@
 # window
 
+## location
+
+Returns the current URL.
+
+- Use `Window.location.href` to get the current URL.
+
+```js
+const currentURL = () => window.location.href;
+```
+
+```js
+currentURL(); // 'https://www.google.com/'
+```
+
 ## base-64
 
 `window.btoa()`：將 ASCII 字符串或二進制數據轉換成一個 base64 編碼過的字符串,該方法不能直接作用於 Unicode 字符串。
