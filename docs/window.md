@@ -14,6 +14,34 @@ const currentURL = () => window.location.href;
 currentURL(); // 'https://www.google.com/'
 ```
 
+## debounce
+
+Creates a debounced function that delays invoking the provided function until at least `ms` milliseconds have elapsed since its last invocation.
+
+- Each time the debounced function is invoked, clear the current pending timeout with `clearTimeout()`. Use `setTimeout()` to create a new timeout that delays invoking the function until at least `ms` milliseconds have elapsed.
+- Use `Function.prototype.apply()` to apply the `this` context to the function and provide the necessary arguments.
+- Omit the second argument, `ms`, to set the timeout at a default of `0` ms.
+
+```js
+const debounce = (fn, ms = 0) => {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+  };
+};
+```
+
+```js
+window.addEventListener(
+  'resize',
+  debounce(() => {
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
+  }, 250)
+); // Will log the window dimensions at most every 250ms
+```
+
 ## base-64
 
 `window.btoa()`：將 ASCII 字符串或二進制數據轉換成一個 base64 編碼過的字符串,該方法不能直接作用於 Unicode 字符串。
