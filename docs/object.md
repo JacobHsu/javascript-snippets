@@ -1,4 +1,12 @@
-# Object.freeze
+# Object
+
+## 檢查對像是否為空
+
+檢查對象的空性實際上比看起來要困難得多，即使對象為空，每次檢查對像是否等於 {} 也會返回 false。
+
+`const isEmpty = obj => Reflect.ownKeys(obj).length === 0 && obj.constructor === Object`
+
+## Object.freeze
 
 防止對象被篡改，可以試試 Object.seal 和 Object.freeze
 

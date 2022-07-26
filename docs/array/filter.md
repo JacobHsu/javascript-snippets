@@ -17,3 +17,20 @@ const difference = (a, b) => {
 ```js
 difference([1, 2, 3, 3], [1, 2, 4]); // [3, 3]
 ```
+
+## Every nth element
+
+Returns every `nth` element in an array.
+
+- Use `Array.prototype.filter()` to create a new array that contains every `nth` element of a given array.
+
+```js
+const everyNth = (arr, nth) => arr.filter((e, i) => i % nth === nth - 1);
+// index%2: 0,1,0,1,0,1
+// index%3: 0,1,2,0,1,2
+```
+
+```js
+everyNth([1, 2, 3, 4, 5, 6], 2); // [ 2, 4, 6 ]
+everyNth([1, 2, 3, 4, 5, 6], 3); // [ 3, 6 ]
+```
