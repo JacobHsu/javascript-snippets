@@ -66,3 +66,28 @@ const filterUnique = arr =>
 ```js
 filterUnique([1, 2, 2, 3, 4, 4, 5]); // [2, 4]
 ```
+
+## Find matching keys
+
+Finds all the keys in the provided object that match the given value.
+
+- Use `Object.keys()` to get all the properties of the object.
+- Use `Array.prototype.filter()` to test each key-value pair and return all keys that are equal to the given value.
+
+
+```js
+const findKeys = (obj, val) =>
+  Object.keys(obj).filter(key => obj[key] === val);
+```
+
+```js
+const ages = {
+  Leo: 20,
+  Zoey: 21,
+  Jane: 20,
+};
+findKeys(ages, 20); // [ 'Leo', 'Jane' ]
+
+// var obj = { Leo: 20, Zoey: 21, Jane: 20 };
+// console.log(Object.keys(obj)); // console: ['Leo', 'Zoey', 'Jane']
+```
