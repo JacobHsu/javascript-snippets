@@ -38,3 +38,19 @@ const indentString = (str, count, indent = ' ') =>
 indentString('Lorem\nIpsum', 2); // '  Lorem\n  Ipsum'
 indentString('Lorem\nIpsum', 2, '_'); // '__Lorem\n__Ipsum'
 ```
+
+## Check if absolute URL
+
+Checks if the given string is an absolute URL.
+
+- Use `RegExp.prototype.test()` to test if the string is an absolute URL.
+
+```js
+const isAbsoluteURL = str => /^[a-z][a-z0-9+.-]*:/.test(str);
+```
+
+```js
+isAbsoluteURL('https://google.com'); // true
+isAbsoluteURL('ftp://www.myserver.net'); // true
+isAbsoluteURL('/foo/bar'); // false
+```
