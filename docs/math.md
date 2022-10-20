@@ -46,3 +46,17 @@ divmod(8, 3); // [2, 2]
 divmod(3, 8); // [0, 3]
 divmod(5, 5); // [1, 0]
 ```
+
+## Km to miles
+
+Converts kilometers to miles.
+
+- Follow the conversion formula `mi = km * 0.621371`.
+
+```js
+const kmToMiles = km => km * 0.621371;
+```
+
+```js
+kmToMiles(8.1) // 5.0331051
+```
