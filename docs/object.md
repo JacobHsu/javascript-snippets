@@ -123,3 +123,17 @@ const commonKeys = (obj1, obj2) =>
 ```js
 commonKeys({ a: 1, b: 2 }, { a: 2, c: 1 }); // ['a']
 ```
+
+## Array to flags object
+
+Converts an array of strings into an object mapping to true.
+
+- Use `Array.prototype.reduce()` to convert the array into an object, where each array value is used as a key whose value is set to `true`.
+
+```js
+const flags = arr => arr.reduce((acc, str) => ({...acc, [str]: true }), {});
+```
+
+```js
+flags(['red', 'green']); // { red: true, green: true }
+```
