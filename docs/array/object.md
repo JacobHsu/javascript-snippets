@@ -50,3 +50,14 @@ indexOn([
 ], 'id');
 // { '10': { name: 'apple' }, '20': { name: 'orange' } }
 ```
+
+```js
+    const symbols = data.reduce((obj, v, index) => {
+      let { poolName } = v;
+      obj[index] = poolName;
+      return obj;
+    }, {});
+
+    // const arrsymbols = Object.values(symbols); [poolName1, poolName2]
+    // symbols.includes(symbol)
+```
