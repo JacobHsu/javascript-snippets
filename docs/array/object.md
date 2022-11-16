@@ -78,3 +78,4 @@ const forOwn = (obj, fn) =>
 ```js
 forOwn({ foo: 'bar', a: 1 }, v => console.log(v)); // 'bar', 1
 ```
+
