@@ -283,7 +283,7 @@ formatSeconds(-200); // '-00:03:20'
 formatSeconds(99999); // '27:46:39'
 ```
 
-## Get colon time from date
+### Get colon time from date
 
 Returns a string of the form `HH:MM:SS` from a `Date` object.
 

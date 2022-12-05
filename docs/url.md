@@ -23,3 +23,15 @@ getURLParameters('google.com'); // {}
 getURLParameters('http://url.com/page?name=Adam&surname=Smith');
 // {name: 'Adam', surname: 'Smith'}
 ```
+
+## getProtocol
+
+- Use `Window.location.protocol` to get the protocol (`http:` or `https:`) of the current page.
+
+```js
+const getProtocol = () => window.location.protocol;
+```
+
+```js
+getProtocol(); // 'https:'
+```
