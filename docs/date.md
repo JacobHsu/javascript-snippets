@@ -85,6 +85,24 @@ const dayDif = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getT
 dayDif(new Date("2021-11-3"), new Date("2022-2-1"))  // 90
 ```
 
+## Date difference in seconds
+
+Calculates the difference (in seconds) between two dates.
+
+- Subtract the two `Date` objects and divide by the number of milliseconds in a second to get the difference (in seconds) between them.
+
+```js
+const getSecondsDiffBetweenDates = (dateInitial, dateFinal) =>
+  (dateFinal - dateInitial) / 1000;
+```
+
+```js
+getSecondsDiffBetweenDates(
+  new Date('2020-12-24 00:00:15'),
+  new Date('2020-12-24 00:00:17')
+); // 2
+```
+
 ## daysAgo
 
 Calculates the date of `n` days ago from today as a string representation.
