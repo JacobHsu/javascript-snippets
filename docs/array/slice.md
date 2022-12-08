@@ -67,3 +67,26 @@ const firstN = (arr, n) => arr.slice(0, n);
 ```js
 firstN(['a', 'b', 'c', 'd'], 2); // ['a', 'b']
 ```
+
+## 重複值處理
+
+使用splice
+
+```js
+function uniqueArray(arr){
+    for(var i = 0; i < arr.length - 1; i++) {        
+      for(var j = i + 1;j < arr.length; j++) {            
+        if(arr[j] === arr[i]) {                
+          arr.splice(j--, 1);            
+        }        
+      }    
+    }    
+    return arr;
+}
+```
+
+優點：不需要使用額外的存儲空間，空間複雜度為 O（1）  
+缺點：需要頻繁的內存移動，雙重循環，時間複雜度為 O（N²）
+
+`Object+Array`最省時間，`splice`的方式最耗時（它比較省空間），
+`Set+Array`的簡潔方式在數據量大的時候時間將明顯少於需要O（N²）的Array，同樣是O（N²）的splice和Array，Array的時間要小於經常內存移動操作的splice。
