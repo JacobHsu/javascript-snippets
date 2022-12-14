@@ -177,6 +177,17 @@ groupBy([6.1, 4.2, 6.3], Math.floor); // {4: [4.2], 6: [6.1, 6.3]}  // Math.floo
 groupBy(['one', 'two', 'three'], 'length'); // {3: ['one', 'two'], 5: ['three']}
 ```
 
+```js
+const map2 = [6.1, 4.2, 6.3].map(Math.floor)
+console.log(map2); // [6, 4, 6]
+
+const map3 = ['one', 'two', 'three'].map(val => val['length'])
+console.log(map3); // [3, 3, 5]
+
+const map21 = [6, 4, 6].reduce((acc, val, i) => { acc[val] = i; return acc; }, {});
+console.log(map21); // Object { 4: 1, 6: 2 }
+```
+
 ## either - Logical or for functions
 
 Checks if at least one function returns `true` for a given set of arguments.
