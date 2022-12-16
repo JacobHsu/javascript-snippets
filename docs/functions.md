@@ -205,3 +205,14 @@ const isPositiveOrEven = either(isPositive, isEven);
 isPositiveOrEven(4); // true
 isPositiveOrEven(3); // true
 ```
+
+## function return function
+
+```js
+function connect() {
+  return function() {
+    return 'Hi there!';
+  }
+}
+connect()() // Hi there!
+```
