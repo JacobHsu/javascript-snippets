@@ -80,3 +80,19 @@ const caesarCipher = (str, shift, decrypt = false) => {
 caesarCipher('Hello World!', -3); // 'Ebiil Tloia!'
 caesarCipher('Ebiil Tloia!', 23, true); // 'Hello World!'
 ```
+
+## Mask Eth Address
+
+```js
+export const maskEthAddress = (
+  originString,
+  startRetain = 6,
+  endRetain = 4,
+  mask = '...'
+) => {
+  const reg = new RegExp(`(?<=.{${startRetain}}).{32}(?=.{${endRetain}})`, 'g');
+  return originString.replace(reg, mask);
+};
+````
+
+`0xbcb5b05283b0ae0bedd1277f83492fbb0bcefcf9` `0xbcb5...efcf9`  
