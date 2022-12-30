@@ -39,3 +39,4 @@ const countSubstrings = (str, searchValue) => {
 countSubstrings('tiktok tok tok tik tok tik', 'tik'); // 3
 countSubstrings('tutut tut tut', 'tut'); // 4
 ```
+
